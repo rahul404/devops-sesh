@@ -16,7 +16,7 @@ FROM openjdk
 
 #maintainer 
 MAINTAINER dstar55@yahoo.com
-#expose port 8080
+#expose port 8082
 EXPOSE 8082
 
 #default command

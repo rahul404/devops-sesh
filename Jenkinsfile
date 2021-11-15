@@ -13,7 +13,7 @@ node {
     
     stage('Clone Repo') { // for display purposes
       // Get some code from a GitHub repository
-      git "https://github.com/rahul404/devops-sesh.git"
+      git 'https://github.com/dstar55/docker-hello-world-spring-boot.git'
       // Get the Maven tool.
       // ** NOTE: This 'maven-3.6.1' Maven tool must be configured
       // **       in the global configuration.           
@@ -50,13 +50,10 @@ node {
       
       // deploy docker image to nexus
 
-      // echo "Docker Image Tag Name: ${dockerImageTag}"
+      echo "Docker Image Tag Name: ${dockerImageTag}"
 
-      // sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
-      // sh "docker tag ${dockerImageName} ${dockerImageTag}"
-      // sh "docker push ${dockerImageTag}"
-
-      sh "docker stop `docker container ls | grep 'hello-world-java:*' | awk '{ print \$1 }'`"
-      sh "docker run -p 8082:8082 -it --rm hello-world-java"
+      sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
+      sh "docker tag ${dockerImageName} ${dockerImageTag}"
+      sh "docker push ${dockerImageTag}"
     }
 }
