@@ -50,10 +50,15 @@ node {
       
       // deploy docker image to nexus
 
-      echo "Docker Image Tag Name: ${dockerImageTag}"
+      // echo "Docker Image Tag Name: ${dockerImageTag}"
 
-      sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
-      sh "docker tag ${dockerImageName} ${dockerImageTag}"
-      sh "docker push ${dockerImageTag}"
+      // sh "docker login -u admin -p admin123 ${dockerRepoUrl}"
+      // sh "docker tag ${dockerImageName} ${dockerImageTag}"
+      // sh "docker push ${dockerImageTag}"
+
+      sh  """
+        docker stop `docker container ls | grep "hello-world-java:*" | awk '{ print $1 }'`
+        docker run -p 8082:8082 -it --rm hello-world-java
+      """
     }
 }
