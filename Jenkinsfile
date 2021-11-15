@@ -56,7 +56,7 @@ node {
       // sh "docker tag ${dockerImageName} ${dockerImageTag}"
       // sh "docker push ${dockerImageTag}"
 
-      sh "docker stop `docker container ls | grep \"hello-world-java:*\" | awk '{ print $1 }'`"
+      sh "docker stop `docker container ls | grep 'hello-world-java:*' | awk '{ print \$1 }'`"
       sh "docker run -p 8082:8082 -it --rm hello-world-java"
     }
 }
